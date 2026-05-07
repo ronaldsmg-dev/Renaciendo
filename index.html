@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Renaciendo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SPLASH SCREEN (Pantalla de carga) -->
+  <div id="splash" class="splash-screen">
+    <img src="img/WhatsApp Image 2026-05-06 at 7.16.31 PM.jpeg" alt="Renaciendo Logo" class="splash-logo">
+    <div class="loader"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-brand">
+      <img src="img/WhatsApp Image 2026-05-06 at 7.16.31 PM.jpeg" alt="Logo" class="logo-mini">
+      <span>Renaciendo Juan Camilo</span>
+    </div>
+    <button id="cartBtn" onclick="toggleCart()">
+      🛒 <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <!-- CATALOGO -->
+  <main id="catalog"></main>
+
+  <!-- CARRITO -->
+  <div id="cartPanel" class="cart-panel">
+    <div class="cart-header">
+      <h2>🛒 Pedido</h2>
+      <button onclick="toggleCart()">✕</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    
+    <!-- Watermark interno del carrito vacío -->
+    <div id="emptyWatermark" class="watermark">
+      <img src="img/WhatsApp Image 2026-05-06 at 7.16.31 PM.jpeg" alt="">
+      <p>Agrega productos</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>Total</span>
+        <span class="total-value">$<span id="totalPrice">0.00</span></span>
+      </div>
+      <button id="checkoutBtn" onclick="checkout()" disabled>COBRAR</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
