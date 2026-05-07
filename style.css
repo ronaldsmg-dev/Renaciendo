@@ -408,4 +408,89 @@ header {
     width: 240px;
     height: 240px;
   }
+  /* PANEL DE VENTAS */
+.sales-panel {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6); z-index: 300;
+  display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.sales-panel.open { display: flex; }
+
+.sales-modal {
+  background: #fff; border-radius: 20px; padding: 24px;
+  width: 92%; max-width: 420px; max-height: 85vh; overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.sales-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.sales-header h2 { font-size: 1.3rem; }
+.sales-header button { background:#f3f4f6; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; }
+
+.sales-summary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.summary-box { background: #f8f9fa; padding: 14px 10px; border-radius: 12px; text-align: center; }
+.summary-box span { display: block; font-size: 0.75rem; color: #6b7280; margin-bottom: 4px; }
+.summary-box strong { font-size: 1.1rem; color: #111827; }
+
+.sales-list { max-height: 280px; overflow-y: auto; padding-right: 4px; }
+.sale-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-size: 0.95rem; }
+.sale-item:last-child { border-bottom: none; }
+.sale-time { color: #6b7280; font-size: 0.85rem; }
+.sale-total { font-weight: 700; color: var(--fire-red); }
+
+.empty-sales { text-align: center; padding: 20px; color: #9ca3af; }
+
+/* ========== IMPRESIÓN - TICKET TÉRMICO ========== */
+.receipt-hidden { 
+  display: none !important; 
+  visibility: hidden !important;
+}
+
+@media print {
+  /* Oculta TODO el contenido de la app */
+  body * { 
+    visibility: hidden !important; 
+    display: none !important; 
+  }
+  
+  /* Muestra SOLO el ticket */
+  #receipt, #receipt * { 
+    visibility: visible !important; 
+    display: block !important; 
+  }
+  
+  #receipt {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 80mm !important; /* Cambia a 58mm si tu impresora es angosta */
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+    padding: 5px !important;
+    background: #fff !important;
+    color: #000 !important;
+    margin: 0 !important;
+  }
+  
+  /* Elimina márgenes, encabezados y pies del navegador */
+  @page { 
+    margin: 0 !important; 
+    size: auto !important; 
+  }
+  
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Evita saltos de página extra */
+  #receipt { page-break-after: avoid !important; }
+}
+
+
 }

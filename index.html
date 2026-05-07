@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Renaciendo</title>
+  <title>Renaciendo POS</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- SPLASH SCREEN (Pantalla de carga) -->
+  <!-- SPLASH SCREEN -->
   <div id="splash" class="splash-screen">
     <img src="img/WhatsApp Image 2026-05-06 at 7.16.31 PM.jpeg" alt="Renaciendo Logo" class="splash-logo">
     <div class="loader"></div>
@@ -18,11 +18,12 @@
   <header>
     <div class="header-brand">
       <img src="img/WhatsApp Image 2026-05-06 at 7.16.31 PM.jpeg" alt="Logo" class="logo-mini">
-      <span>Renaciendo Juan Camilo</span>
+      <span>POS</span>
     </div>
-    <button id="cartBtn" onclick="toggleCart()">
-      🛒 <span id="cartCount">0</span>
-    </button>
+    <div style="display:flex;gap:8px;">
+      <button id="salesBtn" onclick="openSalesReport()" style="background:#fff;color:#333;padding:8px 12px;border-radius:20px;border:none;font-weight:600;cursor:pointer;">📊 Ventas</button>
+      <button id="cartBtn" onclick="toggleCart()">🛒 <span id="cartCount">0</span></button>
+    </div>
   </header>
 
   <!-- CATALOGO -->
@@ -36,7 +37,6 @@
     </div>
     <div id="cartItems" class="cart-items"></div>
     
-    <!-- Watermark interno del carrito vacío -->
     <div id="emptyWatermark" class="watermark">
       <img src="img/WhatsApp Image 2026-05-06 at 7.16.31 PM.jpeg" alt="">
       <p>Agrega productos</p>
@@ -50,6 +50,36 @@
       <button id="checkoutBtn" onclick="checkout()" disabled>COBRAR</button>
     </div>
   </div>
+
+  <!-- PANEL DE VENTAS DEL DÍA -->
+  <div id="salesPanel" class="sales-panel">
+    <div class="sales-modal">
+      <div class="sales-header">
+        <h2>📊 Ventas de Hoy</h2>
+        <button onclick="closeSalesReport()">✕</button>
+      </div>
+      <div class="sales-summary">
+        <div class="summary-box">
+          <span>Total Vendido</span>
+          <strong id="dailyTotal">$0.00</strong>
+        </div>
+        <div class="summary-box">
+          <span>Transacciones</span>
+          <strong id="dailyCount">0</strong>
+        </div>
+        <div class="summary-box">
+          <span>Ticket Promedio</span>
+          <strong id="dailyAvg">$0.00</strong>
+        </div>
+      </div>
+      <h3 style="margin:16px 0 8px;font-size:0.95rem;color:#666;">Detalle</h3>
+      <div id="salesList" class="sales-list"></div>
+      <button onclick="clearDailySales()" style="margin-top:12px;width:100%;padding:10px;background:#ef4444;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">🗑️ Reiniciar Día</button>
+    </div>
+  </div>
+
+  <!-- TICKET OCULTO PARA IMPRIMIR -->
+  <div id="receipt" class="receipt-hidden"></div>
 
   <script src="app.js"></script>
 </body>
